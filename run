@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+#################################################################################
+# This is the main script of os-configurer it'run purpose it to orchestrate all   #
+# others scripts that configure the system. Each script is a simple bash script #
+#################################################################################
+
+
+#################################################################################
+# Each configuration script is defined as run and its purpose is to configure a #
+# part of the system e.g. git username or installing some packages (browsers,   #
+# terminal-emulator, configuring tmux, etc)                                     #
+#################################################################################
+
+# helper logging functions
+log() {
+    if [[ $dry_run == "1" ]]; then
+        echo "[DRY_RUN]: $1"
+    else
+        echo "$1"
+    fi
+}
+
+debug() {
+    if [[ $verbose_mode == "1" ]]; then
+        echo "[DEBUG]: $1"
+    fi
+}
+
+print_help() {
+		echo "Welcome to os-configurer help menu. Valid comands:"
+		echo "./run --dry  --> Runs in dry mode"
+		echo "./run -v     --> Runs in verbose mode (put as first argument if you need argument debugging)"
+		echo "./run -l     --> Prints the list of available runs"
+		echo "./run -h     --> Print this help menu"
+		echo "./run [-vlh] [module to run] --> if specified runs only a module or a set of modules that match the regex"
+		exit 0
+}
+
+# if empty all runs are executed otherwise only runs that are in this filter are executed
+filter=""
+dry_run="0"
+verbose_mode="0"
+
+# argument parsing
+while [[ $# -gt 0 ]]; do
+    debug "parsing argument: \"$1\""
+    if [[ "$1" == "--dry" ]]; then
+        dry_run="1"
+				debug "setting dry_run to $dry_run"
+    elif [[ "$1" == "-v" ]]; then
+        verbose_mode="1"
+				debug "setting verbose_mode to $verbose_mode"
+    elif [[ "$1" == "-h" ]]; then
+				debug "Printing help menu"
+				print_help
+    elif [[ "$1" == "-l" ]]; then
+				debug "Printing all scripts"
+				script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+				log `find $script_dir/runs -mindepth 2 -maxdepth 2 -executable`
+				exit 0
+    else
+				filter="$1"
+				debug "setting filter to $filter"
+    fi
+    shift
+done
+
+debug "verbose mode is active"
+
+debug "getting path of this script (directory):"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+debug $script_dir
+
+debug "getting all runs script paths"
+runs_dir=`find $script_dir/runs -mindepth 2 -maxdepth 2 -executable`
+debug $runs_dir
+
+log "running with current filter: \"$filter\""
+for run in $runs_dir; do
+    if echo "$run" | grep -vq "$filter"; then
+        log "skipping: grep \"$filter\" filtered out $run"
+        continue
+    fi
+
+    log "running script: $run"
+    if [[ $dry_run == "0" ]]; then
+        $run
+    fi
+done
+

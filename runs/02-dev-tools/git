@@ -6,3 +6,4 @@ git config --global user.email "daniele.pintore1@gmail.com"
 git config --global user.name "Daniele Pintore"
 git config --global init.defaultbranch main
 git config --global core.editor nvim
+git config --global push.autoSetupRemote true

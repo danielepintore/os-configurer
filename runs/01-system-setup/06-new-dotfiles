@@ -5,8 +5,11 @@ echo -e "\e[31m❌ Manual intervation needed: please be sure to add your ssh key
 echo -e "\e[31mPress any key to continue\e[0m" >&2
 read -r 
 cd $HOME
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-echo ".cfg" >> .gitignore
-if ! git clone --bare git@github.com:danielepintore/dotfiles.git $HOME/.cfg && config checkout && config config --local status.showUntrackedFiles no; then
+if ! (git clone --bare git@github.com:danielepintore/dotfiles.git $HOME/.cfg &&
+			/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f &&
+			/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no); then
 	echo -e "\e[31m❌ Manual intervation needed: failed to setup your dotfiles.\e[0m" >&2
+	echo -e "\e[31mPress any key to continue\e[0m" >&2
+	read -r 
+	exit 1
 fi

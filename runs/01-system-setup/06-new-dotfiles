@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# set up my dotfiles
+echo -e "\e[31m❌ Manual intervation needed: please be sure to add your ssh keys on github.\e[0m" >&2
+echo -e "\e[31mPress any key to continue\e[0m" >&2
+read -r 
+cd $HOME
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+echo ".cfg" >> .gitignore
+if ! git clone --bare git@github.com:danielepintore/dotfiles.git $HOME/.cfg && config checkout && config config --local status.showUntrackedFiles no; then
+	echo -e "\e[31m❌ Manual intervation needed: failed to setup your dotfiles.\e[0m" >&2
+fi

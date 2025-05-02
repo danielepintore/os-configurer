@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# configure snapper
+sudo pacman -S snapper --noconfirm
+# check if config exists otherwise create one
+if ! sudo snapper -c root get-config &> /dev/null; then
+	# try to create a new config
+	if ! sudo snapper --config root create-config / &> /dev/null; then
+		# we failed to create a new config probably we are using the default layout
+		echo -e "\e[31m❌ Error: Snapper create-config failed. Trying auto fix by deleting the old subvolume.\e[0m" >&2
+		# Removes the submodule already created and re-create it from snapper
+		# I can use mount -a since the fstab doens't use subvolume id
+		if ! sudo umount /.snapshots/ && sudo rmdir /.snapshots/ && sudo snapper --config root create-config / &> /dev/null && sudo mount -a; then
+			echo -e "\e[31m❌ Error: Snapper create-config failed. Please refer to wiki. Probably the subvolume already exists. Manual intervation needed.\e[0m" >&2
+			exit -1
+		fi
+	fi
+	# configure snap-pac for snapshots
+	sudo sed -i "s/^TIMELINE_CREATE=.*/TIMELINE_CREATE=\"no\"/" /etc/snapper/configs/root
+	sudo sed -i "s/^TIMELINE_LIMIT_HOURLY=.*/TIMELINE_LIMIT_HOURLY=\"5\"/" /etc/snapper/configs/root
+	sudo sed -i "s/^TIMELINE_LIMIT_DAILY=.*/TIMELINE_LIMIT_DAILY=\"7\"/" /etc/snapper/configs/root	
+	sudo sed -i "s/^TIMELINE_LIMIT_WEEKLY=.*/TIMELINE_LIMIT_WEEKLY=\"2\"/" /etc/snapper/configs/root
+	sudo sed -i "s/^TIMELINE_LIMIT_MONTHLY=.*/TIMELINE_LIMIT_MONTHLY=\"5\"/" /etc/snapper/configs/root
+	sudo systemctl enable --now snapper-timeline.timer
+	sudo systemctl enable --now snapper-cleanup.timer
+	pacman -S snap-pac --noconfirm
+fi
+
+

@@ -29,6 +29,7 @@ debug() {
 
 print_help() {
 		echo "Welcome to os-configurer help menu. Valid comands:"
+		echo "When creating runs, use number prefixes to ensure the correct executing order"
 		echo "./run --dry  --> Runs in dry mode"
 		echo "./run -v     --> Runs in verbose mode (put as first argument if you need argument debugging)"
 		echo "./run -l     --> Prints the list of available runs"
@@ -57,7 +58,7 @@ while [[ $# -gt 0 ]]; do
     elif [[ "$1" == "-l" ]]; then
 				debug "Printing all scripts"
 				script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-				log `find $script_dir/runs -mindepth 2 -maxdepth 2 -executable`
+				log `find $script_dir/runs -mindepth 2 -maxdepth 2 -executable | sort`
 				exit 0
     else
 				filter="$1"
@@ -73,7 +74,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 debug $script_dir
 
 debug "getting all runs script paths"
-runs_dir=`find $script_dir/runs -mindepth 2 -maxdepth 2 -executable`
+runs_dir=`find $script_dir/runs -mindepth 2 -maxdepth 2 -executable | sort`
 debug $runs_dir
 
 log "running with current filter: \"$filter\""
@@ -85,7 +86,10 @@ for run in $runs_dir; do
 
     log "running script: $run"
     if [[ $dry_run == "0" ]]; then
-        $run
+			# change directory to current executing script
+			cd $(dirname $run)
+			# run the script
+			$run $(dirname $run)
     fi
 done
 

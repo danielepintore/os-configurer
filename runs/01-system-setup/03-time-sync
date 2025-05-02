@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo timedatectl set-ntp true
+timedatectl status
+systemctl status systemd-timesyncd.service

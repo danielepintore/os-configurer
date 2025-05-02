@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# install file manager
+sudo pacman -S nemo nemo-fileroller nemo-image-converter gvfs gvfs-afc gvfs-gphoto2 \
+	gvfs-smb ffmpegthumbnailer poppler-glib freetype2 libgsf evince f3d --noconfirm
+
+# generic user applications
+sudo pacman -S bitwarden discord filezilla gimp gnome-calculator jadx kid3 \
+	libreoffice-fresh loupe nwg-look obs-studio qbittorrent sqlitebrowser steam \
+	telegram-desktop thunderbird veracrypt virtualbox vlc wireshark-qt firefox \
+	ghostty firefox neovim virt-manager qemu-full libvirt --noconfirm
+
+# generic utilities
+sudo pacman -S gdb gnu-netcat hunspell-en_us hunspell-it lsof ripgrep rclone rsync \
+	unrar unzip wev wget curl jdk-openjdk jq lib32-glibc man man-db man-pages nmap \
+	udiskie wireguard-tools ffmpeg linux-headers qpdf efibootmgr dosfstools pandoc-cli \
+	ghc --noconfirm
+	
+# audio applications
+sudo pacman -S pamixer pavucontrol alsa-firmware alsa-plugins alsa-utils sof-firmware --noconfirm
+
+
+# network applications
+sudo pacman -S networkmanager nm-connection-editor network-manager-applet --noconfirm
+

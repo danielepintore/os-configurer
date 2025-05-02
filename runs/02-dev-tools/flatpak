@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo pacman -S flatpak flatpak-builder --noconfirm
+flatpak install com.github.tchx84.Flatseal fr.handbrake.ghb com.usebottles.bottles net.xm1math.Texmaker
+

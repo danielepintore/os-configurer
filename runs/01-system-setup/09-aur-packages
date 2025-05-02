@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+yay -S xwaylandvideobridge android-apktool anytype-bin btrfs-assistant burpsuite cura-bin dex2jar google-chrome httpie-desktop-bin jdownloader2 lrcget-bin qdirstat teams-for-linux termius vdhcoapp-bin zen-browser-bin

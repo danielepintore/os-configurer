@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# install hyprland desktop portals and the gtk one for file picker alongside other base packages
+sudo pacman -S uwsm hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
+	xdg-desktop-portal-gtk rofi-wayland waybar dunst swaybg inotify-tools \
+	 grim slurp wl-clipboard hyprpolkitagent gnome-keyring
+
+# configure reflector to have updated mirrors
+sudo pacman -S reflector --noconfirm
+sudo mv $1/reflector.conf /etc/xdg/reflector/reflector.conf
+sudo chmod 644 /etc/xdg/reflector/reflector.conf
+sudo chown root:root /etc/xdg/reflector/reflector.conf
+sudo systemctl enable --now reflector.timer
+
+# enable paccache timer to delete cached packages that are older than a week
+sudo pacman -S pacman-contrib --noconfirm
+sudo systemctl enable --now paccache.timer
+
+# enable xdg-user-dirs service to generate locale updated user directory
+sudo pacman -S xdg-user-dirs --noconfirm
+systemctl --user enable --now xdg-user-dirs-update.service
+
+# configure pacman (enable colors and cool progress bar)
+sudo sed -i "s/#Color/Color\nILoveCandy/g" /etc/pacman.conf
+# enable multilib repo for steam
+sudo sed -i '/\[multilib\]/,/^$/s/^#\(.*\)$/\1/' /etc/pacman.conf
+sudo pacman -Syu
+
+# disable debug packages builds on makepkg
+sudo sed -i '/^OPTIONS=/s/ debug/ !debug/g' /etc/makepkg.conf
+
+# create screenshots directory for grim
+mkdir -p $HOME/Pictures/Screenshots
+
+# configure uwsm for hyprland
+systemctl --user enable --now hypridle.service
+systemctl --user enable --now hyprpolkitagent.service
+
+# configure gnome-keyring
+systemctl --user enable --now gcr-ssh-agent.socket
+
+# configure plymouth (opt for manual config)
+# xdg-open https://wiki.archlinux.org/title/Plymouth
+

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# install zsh
+sudo pacman -S zsh zsh-syntax-highlighting fzf --noconfirm
+
+# tell zsh where is its configuration
+echo "export ZDOTDIR=\"$HOME/.config/zsh/\"" | sudo tee /etc/zsh/zshenv
+
+chsh -s /bin/zsh

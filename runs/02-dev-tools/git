@@ -7,3 +7,11 @@ git config --global user.name "Daniele Pintore"
 git config --global init.defaultbranch main
 git config --global core.editor nvim
 git config --global push.autoSetupRemote true
+
+# Configure git to use my gpg key
+git config --global user.signingkey A285BAE7C43E3B50
+git config --global commit.gpgsign true
+git config --global tag.gpgSign true
+echo -e "\e[31m❌ Manual intervation needed: please import your gpg key in order to use git\e[0m" >&2
+echo -e "\e[31mPress any key to continue\e[0m" >&2
+read -r 

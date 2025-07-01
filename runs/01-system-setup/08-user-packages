@@ -16,7 +16,7 @@ sudo pacman -S bitwarden discord filezilla gimp gnome-calculator jadx kid3 \
 sudo pacman -S gdb gnu-netcat hunspell-en_us hunspell-it lsof ripgrep rclone rsync \
 	unrar unzip wev wget curl jdk-openjdk jq lib32-glibc man man-db man-pages nmap \
 	udiskie wireguard-tools ffmpeg linux-headers qpdf efibootmgr dosfstools pandoc-cli \
-	ghc --noconfirm
+	ghc btop --noconfirm
 	
 # audio applications
 sudo pacman -S pamixer pavucontrol alsa-firmware alsa-plugins alsa-utils sof-firmware --noconfirm

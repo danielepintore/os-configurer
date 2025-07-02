@@ -3,6 +3,9 @@
 # This script must run after 06-new-dotfiles since it uses web2app script that
 # is present in my dotfiles
 
+# since zsh is still not configured here we need to load the functions
+source ~/.config/zsh/functions
+
 web2app "WhatsApp" https://web.whatsapp.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png
 web2app "YouTube" https://youtube.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/youtube.png
 web2app "Spotify" https://open.spotify.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/spotify.png

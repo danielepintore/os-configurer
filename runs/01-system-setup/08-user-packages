@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 # install file manager
-sudo pacman -S nemo nemo-fileroller nemo-image-converter gvfs gvfs-afc gvfs-gphoto2 \
+sudo pacman -S nautilus file-roller gvfs gvfs-afc gvfs-gphoto2 \
 	gvfs-smb ffmpegthumbnailer poppler-glib freetype2 libgsf evince f3d --noconfirm
-# set default terminal for file manager
-gsettings set org.cinnamon.desktop.default-applications.terminal exec ghostty
 
 # generic user applications
 sudo pacman -S bitwarden discord filezilla gimp gnome-calculator jadx kid3 \

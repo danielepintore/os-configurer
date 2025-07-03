@@ -4,6 +4,6 @@
 yay -S xwaylandvideobridge btrfs-assistant waypaper
 
 # user packages
-yay -S android-apktool anytype-bin burpsuite cura-bin dex2jar google-chrome \
+yay -S android-apktool anytype-bin burpsuite cura-bin dex2jar \
 	httpie-desktop-bin jdownloader2 lrcget-bin qdirstat teams-for-linux termius \
-	vdhcoapp-bin zen-browser-bin
+	vdhcoapp-bin 

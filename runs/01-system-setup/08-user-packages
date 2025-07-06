@@ -10,6 +10,11 @@ sudo pacman -S bitwarden discord filezilla gimp gnome-calculator jadx kid3 \
 	telegram-desktop thunderbird veracrypt virtualbox vlc wireshark-qt firefox \
 	chromium ghostty neovim virt-manager qemu-full libvirt --noconfirm
 
+# create vim aliases
+sudo ln -s $(which nvim) /usr/bin/v
+sudo ln -s $(which nvim) /usr/bin/vi
+sudo ln -s $(which nvim) /usr/bin/vim
+
 # generic utilities
 sudo pacman -S gdb gnu-netcat hunspell-en_us hunspell-it lsof ripgrep rclone rsync \
 	unrar unzip wev wget curl jdk-openjdk jq lib32-glibc man man-db man-pages nmap \

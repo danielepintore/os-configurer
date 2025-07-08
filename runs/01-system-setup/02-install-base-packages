@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # install hyprland desktop portals and the gtk one for file picker alongside other base packages
-sudo pacman -S uwsm hyprpaper hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
+sudo pacman -S hyprland uwsm hyprpaper hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
 	xdg-desktop-portal-gtk rofi-wayland waybar dunst inotify-tools \
 	grim slurp wl-clipboard hyprpolkitagent gnome-keyring --noconfirm
 

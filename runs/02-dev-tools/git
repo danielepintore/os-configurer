@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -S git --noconfirm
+sudo pacman -S git --noconfirm
 
 git config --global user.email "daniele.pintore1@gmail.com"
 git config --global user.name "Daniele Pintore"

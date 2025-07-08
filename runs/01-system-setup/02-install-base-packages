@@ -3,7 +3,7 @@
 # install hyprland desktop portals and the gtk one for file picker alongside other base packages
 sudo pacman -S hyprland uwsm hyprpaper hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
 	xdg-desktop-portal-gtk rofi-wayland waybar dunst inotify-tools \
-	grim slurp wl-clipboard hyprpolkitagent gnome-keyring --noconfirm
+	grim slurp wl-clipboard hyprpolkitagent gnome-keyring openssh --noconfirm
 
 # install fonts
 sudo pacman -S ttf-agave-nerd ttf-liberation otf-font-awesome ttf-font-awesome ttf-jetbrains-mono ttf-jetbrains-mono-nerd --noconfirm

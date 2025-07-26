@@ -19,3 +19,9 @@ if ! (git clone --bare https://github.com/danielepintore/dotfiles.git $HOME/.cfg
 	read -r 
 	exit 1
 fi
+
+echo "Downloading wallpapers..."
+git clone https://github.com/danielepintore/wallpapers $HOME/.config/hypr/wallpapers
+cd $HOME/.config/hypr/wallpapers
+git remote set-url origin git@github.com:danielepintore/wallpapers.git
+cd $HOME

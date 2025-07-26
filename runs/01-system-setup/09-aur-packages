@@ -6,4 +6,4 @@ yay -S xwaylandvideobridge btrfs-assistant waypaper
 # user packages
 yay -S android-apktool anytype-bin burpsuite cura-bin dex2jar ente-auth-bin \
 	httpie-desktop-bin jdownloader2 lrcget-bin qdirstat teams-for-linux termius \
-	vdhcoapp-bin 
+	vdhcoapp-bin wezterm-nightly-bin

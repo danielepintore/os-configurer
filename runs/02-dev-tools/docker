@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# sudo pacman -S podman podman-compose --noconfirm
+
+sudo pacman -S docker docker-compose --noconfirm
+sudo systemctl enable --now docker.socket
+sudo usermod -aG docker $USER

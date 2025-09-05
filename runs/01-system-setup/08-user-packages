@@ -8,7 +8,8 @@ sudo pacman -S nautilus file-roller gvfs gvfs-afc gvfs-gphoto2 \
 sudo pacman -S bitwarden discord filezilla gimp gnome-calculator jadx kid3 \
 	libreoffice-fresh loupe nwg-look gnome-themes-extra obs-studio qbittorrent \
     sqlitebrowser steam telegram-desktop thunderbird veracrypt virtualbox vlc \
-    wireshark-qt firefox chromium ghostty neovim virt-manager qemu-full libvirt --noconfirm
+    wireshark-qt firefox chromium ghostty neovim virt-manager qemu-full libvirt \
+    gnome-disk-utility --noconfirm
 
 # create vim aliases
 sudo ln -s $(which nvim) /usr/bin/v

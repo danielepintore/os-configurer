@@ -43,6 +43,10 @@ systemctl --user enable --now hyprpolkitagent.service
 # configure gnome-keyring
 systemctl --user enable --now gcr-ssh-agent.socket
 
+# configure systemd-resolved
+sudo systemctl enable --now systemd-resolved.service
+sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
 # enable ly
 sudo systemctl enable ly.service
 sudo systemctl disable getty@tty2.service

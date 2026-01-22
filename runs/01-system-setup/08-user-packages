@@ -20,7 +20,7 @@ sudo ln -s $(which nvim) /usr/bin/vim
 sudo pacman -S gdb gnu-netcat hunspell-en_us hunspell-it lsof ripgrep rclone rsync \
 	unrar unzip wev wget curl jdk-openjdk jq lib32-glibc man man-db man-pages nmap \
 	udiskie wireguard-tools ffmpeg linux-headers qpdf efibootmgr dosfstools pandoc-cli \
-	ghc btop --noconfirm
+	ghc btop imagemagick --noconfirm
 	
 # audio applications
 sudo pacman -S pamixer pavucontrol alsa-firmware alsa-plugins alsa-utils sof-firmware --noconfirm

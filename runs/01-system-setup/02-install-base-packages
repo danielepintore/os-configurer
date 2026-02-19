@@ -51,7 +51,7 @@ sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 sudo systemctl enable ly.service
 sudo systemctl disable getty@tty2.service
 # configure ly
-sudo sed -i "s/^animation =.*/animation = colormix/g" /etc/ly/config.ini
+sudo sed -i "s/^animation =.*/animation = none/g" /etc/ly/config.ini
 sudo sed -i "s/^bigclock =.*/bigclock = en/g" /etc/ly/config.ini
 sudo sed -i "s/^clear_password =.*/clear_password = true/g" /etc/ly/config.ini
 

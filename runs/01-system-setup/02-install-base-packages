@@ -48,8 +48,8 @@ sudo systemctl enable --now systemd-resolved.service
 sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 # enable ly
-sudo systemctl enable ly.service
 sudo systemctl disable getty@tty2.service
+sudo systemctl enable ly@tty2.service
 # configure ly
 sudo sed -i "s/^animation =.*/animation = none/g" /etc/ly/config.ini
 sudo sed -i "s/^bigclock =.*/bigclock = en/g" /etc/ly/config.ini

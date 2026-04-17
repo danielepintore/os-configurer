@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # install hyprland desktop portals and the gtk one for file picker alongside other base packages
-sudo pacman -S hyprland uwsm hyprpaper hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
-	ly xdg-desktop-portal-gtk rofi waybar dunst inotify-tools batsignal \
+sudo pacman -S hyprland uwsm hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
+	ly xdg-desktop-portal-gtk inotify-tools batsignal power-profiles-daemon \
 	grim slurp wl-clipboard hyprpolkitagent gnome-keyring openssh --noconfirm
 
 # install fonts
@@ -37,7 +37,6 @@ mkdir -p $HOME/Pictures/Screenshots
 
 # configure uwsm for hyprland
 systemctl --user enable --now hypridle.service
-systemctl --user enable --now hyprpaper.service
 systemctl --user enable --now hyprpolkitagent.service
 
 # configure gnome-keyring
@@ -46,6 +45,9 @@ systemctl --user enable --now gcr-ssh-agent.socket
 # configure systemd-resolved
 sudo systemctl enable --now systemd-resolved.service
 sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+# configure power-profiles-daemon
+sudo systemctl enable --now power-profiles-daemon.service
 
 # enable ly
 sudo systemctl disable getty@tty2.service

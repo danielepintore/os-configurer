@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # system utils
-yay -S xwaylandvideobridge btrfs-assistant waypaper
+yay -S noctalia-shell xwaylandvideobridge btrfs-assistant
 
 # user packages
 yay -S android-apktool anytype-bin burpsuite cura-bin dex2jar ente-auth-bin \

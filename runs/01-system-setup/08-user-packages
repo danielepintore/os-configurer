@@ -30,5 +30,5 @@ sudo pacman -S pamixer pavucontrol alsa-firmware alsa-plugins alsa-utils sof-fir
 sudo pacman -S networkmanager nm-connection-editor network-manager-applet openvpn networkmanager-openvpn --noconfirm
 
 # tailscale setup
-sudo pacman -S tailscale --noconfirm
-sudo systemctl enable tailscaled
+# sudo pacman -S tailscale --noconfirm
+# sudo systemctl enable tailscaled

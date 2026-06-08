@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # system utils
-yay -S noctalia-shell xwaylandvideobridge btrfs-assistant
+yay -S noctalia-shell btrfs-assistant
 
 # nautilus open any terminal with wezterm
 yay -S nautilus-open-any-terminal

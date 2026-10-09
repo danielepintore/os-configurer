@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # install hyprland desktop portals and the gtk one for file picker alongside other base packages
-sudo pacman -S hyprland uwsm hypridle hyprlock hyprcursor hyprpicker xdg-desktop-portal-hyprland \
-	ly xdg-desktop-portal-gtk inotify-tools batsignal power-profiles-daemon \
+sudo pacman -S hyprland uwsm noctalia hyprcursor hyprpicker xdg-desktop-portal-hyprland \
+	xdg-desktop-portal-gtk inotify-tools batsignal power-profiles-daemon \
 	grim slurp wl-clipboard hyprpolkitagent gnome-keyring openssh --noconfirm
 
 # install fonts
@@ -36,7 +36,6 @@ sudo sed -i '/^OPTIONS=/s/ debug/ !debug/g' /etc/makepkg.conf
 mkdir -p $HOME/Pictures/Screenshots
 
 # configure uwsm for hyprland
-systemctl --user enable --now hypridle.service
 systemctl --user enable --now hyprpolkitagent.service
 
 # configure gnome-keyring
@@ -48,18 +47,6 @@ sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 # configure power-profiles-daemon
 sudo systemctl enable --now power-profiles-daemon.service
-
-# enable ly
-sudo systemctl disable getty@tty2.service
-sudo systemctl enable ly@tty2.service
-# configure ly
-sudo sed -i "s/^animation =.*/animation = none/g" /etc/ly/config.ini
-sudo sed -i "s/^bigclock =.*/bigclock = en/g" /etc/ly/config.ini
-sudo sed -i "s/^clear_password =.*/clear_password = true/g" /etc/ly/config.ini
-
-sudo sed -i "s/^colormix_col1.*/colormix_col1 = 0x20000000/g" /etc/ly/config.ini
-sudo sed -i "s/^colormix_col2.*/colormix_col2 = 0x20000000/g" /etc/ly/config.ini
-sudo sed -i "s/^colormix_col3.*/colormix_col3 = 0x0100FF00/g" /etc/ly/config.ini
 
 # configure plymouth (opt for manual config)
 # xdg-open https://wiki.archlinux.org/title/Plymouth

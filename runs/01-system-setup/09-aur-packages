@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
 # system utils
-yay -S noctalia-shell btrfs-assistant
+yay -S noctalia-greeter btrfs-assistant
+
+# configure noctalia greeter
+sudo sed -i 's#^command\s*=.*#command = "'$(command -v noctalia-greeter-session)'"#' /etc/greetd/config.toml
+sudo systemctl enable --now greetd
+sudo noctalia-greeter passwordless-sync enable $USER
+# disable noctalia greeter logo
+echo -e "[appearance]\nhide_logo = true" | sudo tee -a /var/lib/noctalia-greeter/greeter.toml > /dev/null
 
 # nautilus open any terminal with wezterm
 yay -S nautilus-open-any-terminal
